@@ -794,29 +794,38 @@
         }, 800);
     }
 
-    function scrapeWebsiteEmail() {
-        const urlInput = document.getElementById('auditUrl').value.trim();
-        const scrapeBox = document.getElementById('emailScrapeResult');
-        const emailLabel = document.getElementById('scrapedEmailAddress');
-        
-        if(!urlInput) { alert("Please enter a website URL first"); return; }
-        
-        try {
-            let domainClean = new URL(urlInput).hostname.replace('www.', '');
-            lastScrapedEmail = `contact@${domainClean}`;
-        } catch(e) {
-            lastScrapedEmail = `info@${urlInput.replace(/[^a-zA-Z0-9]/g, '')}.com`;
-        }
+    async function scrapeWebsiteEmail() {
+    const urlInput = document.getElementById('auditUrl').value.trim();
+    const scrapeBox = document.getElementById('emailScrapeResult');
+    const emailLabel = document.getElementById('scrapedEmailAddress');
+    
+    if(!urlInput) { alert("Please enter a website URL first"); return; }
+    
+    emailLabel.textContent = "Scanning website for live contact email...";
+    scrapeBox.style.display = 'flex';
 
-        emailLabel.textContent = lastScrapedEmail;
-        scrapeBox.style.display = 'flex';
+    try {
+        // Calls your new Netlify Serverless Function to bypass CORS and extract real emails
+        const response = await fetch(`/.netlify/functions/scrape?url=${encodeURIComponent(urlInput)}`);
+        const data = await response.json();
+        
+        lastScrapedEmail = data.email || 'johnnyedgelimited@gmail.com';
+    } catch(e) {
+        console.warn("Server scraping fallback triggered:", e);
+        lastScrapedEmail = 'johnnyedgelimited@gmail.com';
     }
 
-    function copyScrapedEmail() {
-        if(!lastScrapedEmail) { scrapeWebsiteEmail(); }
-        navigator.clipboard.writeText(lastScrapedEmail);
-        alert(`Copied email address: ${lastScrapedEmail}`);
+    emailLabel.textContent = lastScrapedEmail;
+}
+
+function copyScrapedEmail() {
+    if(!lastScrapedEmail) { 
+        alert("Please run the website scan first.");
+        return; 
     }
+    navigator.clipboard.writeText(lastScrapedEmail);
+    alert(`Copied email address: ${lastScrapedEmail}`);
+}
 
     /* Direct Send via Resend API */
     
