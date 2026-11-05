@@ -1,6 +1,6 @@
-import { Resend } from 'resend';
+const { Resend } = require('resend');
 
-export async function handler(event) {
+exports.handler = async function(event, context) {
     if (event.httpMethod !== 'POST') {
         return { statusCode: 405, body: JSON.stringify({ error: 'Method Not Allowed' }) };
     }
@@ -35,9 +35,10 @@ export async function handler(event) {
             body: JSON.stringify({ success: true, data }),
         };
     } catch (error) {
+        console.error('Resend Error:', error);
         return {
             statusCode: 500,
             body: JSON.stringify({ error: error.message || 'Failed to send email' }),
         };
     }
-}
+};
