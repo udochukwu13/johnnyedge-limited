@@ -20,7 +20,7 @@ export async function handler(event) {
         const resend = new Resend(resendApiKey);
 
         const data = await resend.emails.send({
-    from: 'Johnny Edge Limited <johnnyedgelimited@gmail.com>',
+    from: 'Johnny Edge Limited <audit@johnnyedgelimited.com>',
     to: [to],
     subject: subject || 'SEO Audit Report',
     html: html || '<p>Your website SEO audit report is ready.</p>',
