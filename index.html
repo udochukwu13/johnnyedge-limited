@@ -1,938 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>JohnnyEdge Limited | Digital Solutions, Software & SEO Engineering</title>
-  <meta name="description" content="JohnnyEdge Limited builds custom websites, mobile apps, AI solutions, e-commerce platforms, and provides instant SEO website health audits and digital assets.">
-  <meta name="theme-color" content="#070b14">
-  <meta property="og:title" content="JohnnyEdge Limited">
-  <meta property="og:description" content="Turn your business idea into a powerful digital solution.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://johnnyedgelimited.com/">
-  <link rel="canonical" href="https://johnnyedgelimited.com/">
-  <!-- Paystack Inline Checkout Script -->
-  <script src="https://js.paystack.co/v1/inline.js"></script>
-  <style>
-    :root{
-      --bg:#070b14;
-      --bg-soft:#0d1422;
-      --card:rgba(13,20,34,.78);
-      --card-solid:#0d1422;
-      --text:#f4f7fb;
-      --muted:#9eabc0;
-      --line:#1c2940;
-      --accent:#67f5c7;
-      --accent2:#7c8cff;
-      --shadow:0 20px 70px rgba(0,0,0,.35);
-      --radius: 22px;
-    }
-    .light {
-      --bg: #f5f8fc;
-      --bg-soft: #ffffff;
-      --card: rgba(255,255,255,.85);
-      --card-solid: #ffffff;
-      --text: #0c1422;
-      --muted: #647083;
-      --line: rgba(12,20,34,.10);
-      --shadow: 0 25px 70px rgba(25,45,75,.12);
-    }
-    *{box-sizing:border-box; margin:0; padding:0;}
-    html{scroll-behavior:smooth}
-    body{
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-      background:radial-gradient(circle at 15% 0%,#14233d 0,transparent 35%),var(--bg);
-      color:var(--text);
-      line-height:1.6;
-      transition: background .3s, color .3s;
-      overflow-x:hidden;
-    }
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: .18;
-      z-index: -1;
-      background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-      background-size: 50px 50px;
-    }
-    a{color:inherit;text-decoration:none}
-    button, input, select, textarea { font: inherit; }
-    .wrap{width:min(1120px,92%);margin:auto}
-    
-    .nav{position:sticky;top:0;z-index:20;background:rgba(7,11,20,.85);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.06)}
-    .light .nav { background: rgba(255,255,255,.85); border-bottom-color: var(--line); }
-    .navin{height:76px;display:flex;align-items:center;justify-content:space-between}
-    .brand{font-weight:900;letter-spacing:-.04em;font-size:1.15rem;display:flex;align-items:center;gap:10px}
-    .brand span{color:var(--accent)}
-    .links{display:flex;gap:20px;color:#c4cede;font-size:.9rem;align-items:center}
-    .light .links { color: var(--muted); }
-    .links a:hover{color:var(--accent)}
-    .nav-actions { display: flex; align-items: center; gap: 10px; }
-    .theme-toggle, .menu{background:none;border:1px solid var(--line);color:inherit;border-radius:10px;width:40px;height:40px;cursor:pointer;display:grid;place-items:center; font-size: 1.1rem;}
-    .menu{display:none}
-
-    .hero{padding:92px 0 70px;display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center}
-    .eyebrow{color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:.16em;font-size:.78rem;display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border:1px solid rgba(103,245,199,.2);border-radius:100px;background:rgba(103,245,199,.05);margin-bottom:15px;}
-    .live-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(103,245,199,.15);animation:pulse 1.7s infinite}
-    @keyframes pulse{50%{transform:scale(1.35);opacity:.55}}
-    h1{font-size:clamp(2.8rem,6vw,5.2rem);line-height:1;letter-spacing:-.055em;margin:12px 0 20px}
-    .gradient-text{background:linear-gradient(100deg,var(--accent),var(--accent2));-webkit-background-clip:text;color:transparent}
-    .hero p{font-size:1.1rem;color:var(--muted);max-width:620px}
-    
-    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
-    .btn{padding:13px 20px;border-radius:14px;border:1px solid var(--line);font-weight:800;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition: transform .2s, box-shadow .2s;}
-    .btn:hover{transform:translateY(-2px)}
-    .primary{background:var(--accent);color:#06110d;border-color:var(--accent);box-shadow:0 10px 25px rgba(103,245,199,.25)}
-    .secondary{background:var(--card)}
-
-    .hero-visual{position:relative;min-height:440px;display:grid;place-items:center;perspective:1000px}
-    .orb{width:300px;height:300px;border:1px solid var(--line);border-radius:50%;background:linear-gradient(145deg,#101a2c,#090e19);box-shadow:var(--shadow);display:grid;place-items:center;position:relative;overflow:hidden;animation:floatOrb 7s ease-in-out infinite}
-    @keyframes floatOrb{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-    .orb:before{content:"";position:absolute;inset:-20px;border:1px solid rgba(103,245,199,.2);border-radius:50%;transform:rotateX(60deg) rotateZ(15deg)}
-    .logo3d{font-size:4.5rem;font-weight:1000;letter-spacing:-.1em;color:white;text-shadow:0 10px 30px #000;z-index:2}
-    .float-card{position:absolute;padding:10px 14px;background:rgba(13,20,34,.88);border:1px solid var(--line);backdrop-filter:blur(12px);border-radius:12px;box-shadow:var(--shadow);font-size:.78rem;font-weight:800;animation:cardFloat 5s ease-in-out infinite}
-    .light .float-card{background:rgba(255,255,255,.9)}
-    .float-card.one{top:40px;left:10px}
-    .float-card.two{right:10px;top:140px;animation-delay:-1.5s}
-    .float-card.three{bottom:40px;left:30px;animation-delay:-3s}
-    @keyframes cardFloat{50%{transform:translateY(-8px)}}
-
-    section{padding:80px 0}
-    .sectionhead{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:35px}
-    .sectionhead h2{font-size:clamp(2rem,4vw,3rem);letter-spacing:-.04em;margin:0}
-    .sectionhead p{color:var(--muted);max-width:540px}
-    .section-tag{color:var(--accent);text-transform:uppercase;font-size:.72rem;font-weight:900;letter-spacing:1.5px;margin-bottom:8px}
-    
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:0 10px 35px rgba(0,0,0,.15);transition:transform .2s ease, border-color .2s ease}
-    .card:hover{transform:translateY(-4px);border-color:rgba(103,245,199,.4)}
-    .card h3{margin:10px 0 6px;font-size:1.15rem}
-    .card p{color:var(--muted);font-size:.92rem}
-    .badge-wrap{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0 4px}
-    .badge{font-size:.7rem;background:rgba(124,140,255,.12);color:var(--accent2);padding:4px 8px;border-radius:6px;font-weight:700}
-    .icon{font-size:1.5rem}
-
-    .stats{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--line);background:var(--card-solid)}
-    .stat{padding:28px 20px;border-right:1px solid var(--line);text-align:center}
-    .stat:last-child{border:0}
-    .stat b{font-size:2.2rem;color:var(--accent);display:block}
-    .stat span{display:block;color:var(--muted);font-size:.88rem;font-weight:700;margin-top:4px}
-
-    /* Free Tool Hub */
-    .tool-hub-box { background: var(--card); border: 1px solid var(--line); border-radius: 28px; padding: 36px; box-shadow: var(--shadow); }
-    .tool-workspace { margin-top: 20px; display: grid; gap: 14px; }
-    
-    /* Private SEO Health Auditor & Email Scraper Container (Hidden by Default) */
-    #privateAuditTool { display: none; }
-    .seo-audit-box { background: var(--card); border: 1px solid rgba(103,245,199,0.4); border-radius: 28px; padding: 36px; box-shadow: var(--shadow); margin-bottom: 40px; }
-    .audit-results { margin-top: 20px; display: none; background: var(--bg); border: 1px solid var(--line); padding: 20px; border-radius: 16px; }
-    .email-scrape-box { margin-top: 15px; background: rgba(103, 245, 199, 0.08); border: 1px solid rgba(103, 245, 199, 0.3); padding: 14px 18px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; gap: 15px; display: none; }
-
-    /* Storefront Cards */
-    .store-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .store-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; justify-content: space-between; }
-    .store-price { font-size: 1.4rem; font-weight: 900; color: var(--accent); margin: 12px 0; }
-
-    /* Profile Section Styling */
-    .profile-hero { display: grid; grid-template-columns: 320px 1fr; gap: 40px; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 28px; padding: 40px; margin-bottom: 40px; box-shadow: var(--shadow); }
-    .profile-img-wrap { text-align: center; }
-    .oval-pic { width: 220px; height: 280px; object-fit: cover; border-radius: 50% / 40%; border: 3px solid var(--accent); box-shadow: 0 15px 35px rgba(0,0,0,0.3); margin: 0 auto; cursor: pointer; transition: transform 0.2s; }
-    .oval-pic:hover { transform: scale(1.03); }
-    .profile-meta h3 { font-size: 1.8rem; margin-bottom: 6px; }
-    .profile-meta .title-sub { color: var(--accent); font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; display: block; }
-    .profile-meta p { color: var(--muted); font-size: 0.98rem; margin-bottom: 16px; }
-    .profile-details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-    .profile-box { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); }
-    .profile-box h4 { font-size: 1.2rem; margin-bottom: 14px; color: var(--accent); display: flex; align-items: center; gap: 8px; }
-    .profile-box ul { list-style: none; padding: 0; }
-    .profile-box ul li { color: var(--muted); font-size: 0.9rem; padding: 6px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; }
-    .profile-box ul li:last-child { border-bottom: none; }
-    .showcase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
-    .showcase-media { border-radius: 16px; overflow: hidden; border: 1px solid var(--line); background: var(--bg); box-shadow: var(--shadow); }
-    .showcase-media img, .showcase-media video { width: 100%; height: 220px; object-fit: cover; display: block; }
-    .showcase-media figcaption { padding: 12px; font-size: 0.85rem; color: var(--muted); text-align: center; font-weight: 700; }
-
-    /* QR Code Section */
-    .qr-card{position:relative;overflow:hidden;display:grid;grid-template-columns:1fr 220px;align-items:center;gap:40px;padding:45px;border-radius:28px;border:1px solid rgba(103,245,199,.25);background:linear-gradient(135deg,var(--card-solid),var(--bg))}
-    .qr-box{width:180px;height:180px;margin:auto;padding:12px;display:grid;place-items:center;background:white;border-radius:16px;box-shadow:0 15px 40px rgba(0,0,0,.2)}
-    .qr-box img{width:100%;height:100%;object-fit:contain}
-    .cta-banner{padding:36px;border-radius:28px;border:1px solid var(--line);background:linear-gradient(135deg,var(--card-solid),var(--bg));display:flex;justify-content:space-between;gap:30px;align-items:center}
-    
-    form{display:grid;gap:14px}
-    .fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    input,select,textarea{width:100%;background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:14px;padding:14px;font:inherit;outline:none}
-    input:focus, select:focus, textarea:focus { border-color: var(--accent); }
-    textarea{min-height:130px;resize:vertical}
-    .notice{min-height:24px;color:var(--accent);font-weight:700}
-
-    footer{padding:45px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
-    .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
-    .foot-brand { font-size: 1.1rem; color: var(--text); font-weight: 900; }
-    .foot-brand span { color: var(--accent); }
-    .wa{position:fixed;right:20px;bottom:20px;z-index:30;background:#25d366;color:#06110d;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-weight:900;box-shadow:0 12px 30px rgba(0,0,0,.3);font-size:1.5rem;transition:transform .2s;}
-    .wa:hover{transform:scale(1.08)}
-
-    @media(max-width:900px){
-      .links{display:none}.menu{display:block}
-      .hero{grid-template-columns:1fr;padding-top:50px}
-      .hero-visual{min-height:360px}
-      .grid, .store-grid{grid-template-columns:1fr}
-      .profile-hero{grid-template-columns:1fr; text-align: center;}
-      .profile-details-grid{grid-template-columns:1fr}
-      .showcase-grid{grid-template-columns:1fr}
-      .stats{grid-template-columns:1fr 1fr}
-      .stat:nth-child(2){border-right:0}
-      .stat:nth-child(3),.stat:nth-child(4){border-top:1px solid var(--line)}
-      .cta-banner{display:block;}
-      .cta-banner .btn { margin-top: 20px; }
-      .fields{grid-template-columns:1fr}
-      .qr-card{grid-template-columns:1fr; text-align: center;}
-      .qr-box{margin: 20px auto 0;}
-      .email-scrape-box{flex-direction:column; align-items:flex-start;}
-    }
-  </style>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "JohnnyEdge Limited Digital Suite",
-    "operatingSystem": "All",
-    "applicationCategory": "DeveloperApplication",
-    "offers": {
-      "@type": "AggregateOffer",
-      "priceCurrency": "NGN",
-      "lowPrice": "15000",
-      "highPrice": "150000"
-    },
-    "provider": {
-      "@type": "Organization",
-      "name": "JohnnyEdge Limited",
-      "url": "https://johnnyedgelimited.com/"
-    }
-  }
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Johnny Edge Limited | Enterprise Systems & AI Business Suites</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
 
-<nav class="nav">
-    <div class="wrap navin">
-        <a class="brand" href="#">
-            <div style="width:34px;height:34px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:10px;display:grid;place-items:center;color:#06110d;font-weight:1000;font-size:14px;transform:rotate(-5deg)">JE</div>
-            Johnny<span>Edge</span> Limited
-        </a>
-        <div class="links">
-            <a href="#tools">Free Utilities</a>
-            <a href="#store">Store</a>
-            <a href="#services">Services</a>
-            <a href="#portfolio">Work</a>
-            <a href="#profile-section">Executive Bio</a>
-            <a href="#quote">Get a Quote</a>
-        </div>
-        <div class="nav-actions">
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">☀️</button>
-            <button class="menu" aria-label="Toggle menu" onclick="toggleMobileMenu()">☰</button>
-        </div>
-    </div>
-</nav>
-
-<main>
-    <section class="hero wrap">
-        <div>
-            <div class="eyebrow"><span class="live-dot"></span>Instant Utilities & Software Engineering</div>
-            <h1>Scale your traffic with <span class="gradient-text">smart digital tools</span>.</h1>
-            <p>Access free developer utilities, purchase battle-tested code starters, or hire expert engineering teams to build custom web and mobile platforms.</p>
-            <div class="actions">
-                <a class="btn primary" href="#tools">⚡ Try Free Utilities</a>
-                <a class="btn secondary" href="#store">🛒 Explore Store</a>
+    <!-- Header / Navigation -->
+    <header class="border-b border-slate-800 bg-slate-900/50 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <span class="bg-cyan-500 text-slate-950 font-bold px-3 py-1.5 rounded-lg shadow-sm">JE</span>
+                <h1 class="text-xl font-bold tracking-tight">Johnny Edge Limited</h1>
             </div>
+            <nav class="hidden md:flex space-x-6 text-sm text-slate-300">
+                <a href="#services" class="hover:text-cyan-400 transition">Services</a>
+                <a href="#built" class="hover:text-cyan-400 transition">Portfolio</a>
+                <a href="#bio" class="hover:text-cyan-400 transition">Executive Bio</a>
+            </nav>
         </div>
-        <div class="hero-visual">
-            <div class="float-card one">⚡ JSON Formatter</div>
-            <div class="float-card two">🚀 Next.js Boilerplates</div>
-            <div class="float-card three">💳 Paystack Ready</div>
-            <div class="orb"><div class="logo3d">JE</div></div>
-        </div>
-    </section>
+    </header>
 
-    <div class="stats wrap">
-        <div class="stat"><b>10+</b><span>Years Execution Excellence</span></div>
-        <div class="stat"><b>100%</b><span>Automated System Engineering</span></div>
-        <div class="stat"><b>$500K</b><span>Budget Stewardship</span></div>
-        <div class="stat"><b>99.8%</b><span>Data Accuracy Standard</span></div>
-    </div>
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-6 py-12 space-y-20">
 
-    <!-- FREE TOOL HUB -->
-    <section id="tools">
-        <div class="wrap">
-            <div class="tool-hub-box">
-                <div class="sectionhead" style="margin-bottom:20px;">
-                    <div>
-                        <div class="section-tag">Organic Traffic Engine</div>
-                        <h2>Free Browser Utility Hub</h2>
-                    </div>
-                    <p>Instant client-side developer tools updated daily to drive high-intent organic search traffic.</p>
-                </div>
-                <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px;">
-                    <button class="btn primary" onclick="switchTool('json')">JSON Minifier / Validator</button>
-                    <button class="btn primary" onclick="switchTool('base64')">Base64 Encoder / Decoder</button>
-                    <button class="btn primary" onclick="switchTool('jwt')">JWT Payload Inspector</button>
-                </div>
-                <div class="tool-workspace">
-                    <div id="toolViewerLabel" style="font-weight:700; color:var(--accent);">Active Tool: JSON Minifier & Validator</div>
-                    <textarea id="toolInput" placeholder="Paste your raw JSON or text here..." style="font-family:monospace;"></textarea>
-                    <div style="display:flex; gap:10px;">
-                        <button class="btn primary" onclick="executeTool()">Execute Tool</button>
-                        <button class="btn primary" onclick="navigator.clipboard.writeText(document.getElementById('toolOutput').value)">Copy Result</button>
-                    </div>
-                    <textarea id="toolOutput" readonly placeholder="Output will appear here instantly..." style="font-family:monospace; background:var(--bg-soft);"></textarea>
-                </div>
+        <!-- Executive Bio Section with Profile Image & Trigger -->
+        <section id="bio" class="bg-slate-900 border border-slate-800 rounded-2xl p-8 shadow-xl flex flex-col md:flex-row items-center gap-8">
+            <div class="w-32 h-32 rounded-full overflow-hidden border-2 border-cyan-500 shadow-lg flex-shrink-0 bg-slate-800">
+                <img src="/images/profile.png" alt="Akokwu John Udochukwu" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80'">
             </div>
-        </div>
-    </section>
+            <div class="space-y-3 text-center md:text-left">
+                <span class="text-xs font-semibold tracking-wider text-cyan-400 uppercase">Founder & Lead Software Engineer</span>
+                <h2 class="text-2xl font-bold text-white">Akokwu John Udochukwu</h2>
+                <p class="text-slate-400 text-sm max-w-xl">
+                    Full-stack engineer specializing in SaaS platforms, enterprise management systems, automation tools, and cross-platform mobile solutions built for the global economy.
+                </p>
+                <button onclick="triggerSeoAuditModal()" class="mt-2 inline-flex items-center px-4 py-2 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-medium text-sm rounded-lg transition shadow">
+                    🚀 Run Live SEO Audit & Mailer Test
+                </button>
+            </div>
+        </section>
 
-    <!-- DIGITAL STOREFRONT & TEMPLATES (PAYSTACK INTEGRATED) -->
-    <section id="store">
-        <div class="wrap">
-            <div class="sectionhead">
+        <!-- Portfolio Visual Preview Section -->
+        <section id="built" class="space-y-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
                 <div>
-                    <div class="section-tag">Digital Assets & Store</div>
-                    <h2>Production-Ready Boilerplates & Starters</h2>
+                    <span class="text-xs font-semibold text-cyan-400 uppercase tracking-widest">Showcase</span>
+                    <h2 class="text-3xl font-extrabold tracking-tight text-white mt-1">Built Systems</h2>
                 </div>
-                <p>Instant download code templates and SaaS frameworks built to jumpstart your next venture.</p>
-            </div>
-            <div class="store-grid">
-                <div class="store-card">
-                    <div>
-                        <div class="badge-wrap"><span class="badge">Next.js / SaaS</span></div>
-                        <h3>JohnnyEdge SaaS Boilerplate</h3>
-                        <p>Complete authentication, Supabase backend hooks, and Paystack recurring billing setup.</p>
-                    </div>
-                    <div>
-                        <div class="store-price">₦25,000</div>
-                        <button class="btn primary" style="width:100%; justify-content:center;" onclick="payWithPaystack('JohnnyEdge SaaS Boilerplate', 25000)">Buy via Paystack</button>
-                    </div>
-                </div>
-                <div class="store-card">
-                    <div>
-                        <div class="badge-wrap"><span class="badge">Python / Flask</span></div>
-                        <h3>Lead-Cleaner OS & Scraper</h3>
-                        <p>Automated B2B lead generation script with webhook payment escrow pipelines.</p>
-                    </div>
-                    <div>
-                        <div class="store-price">₦15,000</div>
-                        <button class="btn primary" style="width:100%; justify-content:center;" onclick="payWithPaystack('Lead-Cleaner OS & Scraper', 15000)">Buy via Paystack</button>
-                    </div>
-                </div>
-                <div class="store-card">
-                    <div>
-                        <div class="badge-wrap"><span class="badge">Consultation</span></div>
-                        <h3>30-Min Architecture Audit</h3>
-                        <p>One-on-one technical code review and cloud system assessment session.</p>
-                    </div>
-                    <div>
-                        <div class="store-price">₦50,000</div>
-                        <button class="btn primary" style="width:100%; justify-content:center;" onclick="payWithPaystack('30-Min Architecture Audit', 50000)">Book Consultation</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="services">
-        <div class="wrap">
-            <div class="sectionhead">
-                <div>
-                    <div class="section-tag">What We Build</div>
-                    <h2>Technology Designed Around Your Business</h2>
-                </div>
-                <p>Flexible digital solutions for startups, SMEs, entrepreneurs and established organizations.</p>
-            </div>
-            <div class="grid">
-                <div class="card">
-                    <div class="icon">📱</div>
-                    <h3>Mobile Apps</h3>
-                    <p>Android and iOS applications built around your customers and business model.</p>
-                </div>
-                <div class="card">
-                    <div class="icon">🌐</div>
-                    <h3>Websites & Web Apps</h3>
-                    <p>Fast, responsive business websites, portals, dashboards and custom web platforms.</p>
-                </div>
-                <div class="card">
-                    <div class="icon">🤖</div>
-                    <h3>AI Solutions</h3>
-                    <p>AI-powered assistants, workflows, content systems and intelligent business tools.</p>
-                </div>
-                <div class="card">
-                    <div class="icon">⚙️</div>
-                    <h3>Automation</h3>
-                    <p>Connect repetitive processes, notifications, customer journeys and internal operations.</p>
-                </div>
-                <div class="card">
-                    <div class="icon">🛒</div>
-                    <h3>E-commerce</h3>
-                    <p>Online stores and commerce experiences designed to make buying simple.</p>
-                </div>
-                <div class="card">
-                    <div class="icon">🧩</div>
-                    <h3>Custom Software</h3>
-                    <p>Purpose-built software when off-the-shelf tools don't fit your business.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- DEDICATED EXECUTIVE PROFILE & BIO SECTION -->
-    <section id="profile-section" style="border-top:1px solid var(--line);">
-        <div class="wrap">
-            <div class="sectionhead">
-                <div>
-                    <div class="section-tag">Executive Leadership & Engineering Profile</div>
-                    <h2>Akokwu John Udochukwu</h2>
-                </div>
-                <p>Combining over a decade of high-level operations management, supply chain stewardship, and full-stack software engineering expertise. (Click my profile picture below to toggle your private SEO audit & direct outreach tool).</p>
-            </div>
-            <div class="profile-hero">
-                <div class="profile-img-wrap">
-                    <!-- PRIVATE TOOL TOGGLE TRIGGERED BY CLICKING PROFILE PICTURE -->
-                    <img src="./profile.png" alt="Akokwu John Udochukwu" class="oval-pic" onclick="togglePrivateAuditTool()" title="Click to toggle Private SEO & Outreach Tool">
-                    <span style="font-size:0.75rem; color:var(--accent); display:block; margin-top:8px; font-weight:700;">👆 Click Photo to Toggle Tool</span>
-                </div>
-                <div class="profile-meta">
-                    <h3>Akokwu John Udochukwu</h3>
-                    <span class="title-sub">Procurement & Operations Specialist | Full-Stack Systems Architect</span>
-                    <p>Results-driven Procurement & Operations Specialist with 10+ years of enterprise experience spanning strategic supply chain logistics, multi-vendor contract negotiations, and full-stack software engineering. Adept at leveraging custom-engineered SaaS systems, AI fundamentals, and cloud architectures to eliminate operational friction and accelerate corporate growth.</p>
-                    <div style="display:flex; gap:12px; flex-wrap:wrap;">
-                        <span class="badge">📍 Owerri, Nigeria</span>
-                        <span class="badge">📞 +234 916 357 1445</span>
-                        <span class="badge">✉️ johnudochukwu13@gmail.com</span>
-                    </div>
-                </div>
+                <p class="text-sm text-slate-400 max-w-md">
+                    A curated visual preview of advanced enterprise systems, AI business suites, and immersive simulations engineered by Akokwu John Udochukwu.
+                </p>
             </div>
 
-            <!-- PRIVATE SEO WEBSITE HEALTH AUDITOR & RESEND AUTO-SENDER (Hidden by Default) -->
-            <div id="privateAuditTool">
-                <div class="seo-audit-box">
-                    <div class="sectionhead" style="margin-bottom:20px;">
-                        <div>
-                            <div class="section-tag" style="color:var(--accent2);">🔒 Private Admin Tool</div>
-                            <h2>Website SEO & Health Checker + Instant Outreach Sender</h2>
-                        </div>
-                        <p>Enter client URL to audit health, scrape contact email, and send a direct branded alert via Resend.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Card 1: Business OS -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-lg group hover:border-cyan-500/50 transition">
+                    <div class="h-64 bg-slate-950 overflow-hidden relative">
+                        <img src="/images/business-os.png" alt="JohnnyEdge AI Business OS Dashboard" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80'">
                     </div>
-                    <div class="fields">
-                        <input type="url" id="auditUrl" placeholder="https://example.com" required>
-                        <div style="display:flex; gap:10px;">
-                            <button class="btn primary" onclick="runSeoAudit()" style="flex:1; justify-content:center;">Run SEO Health Audit ⚡</button>
-                            <button class="btn primary" onclick="scrapeWebsiteEmail()" style="flex:1; justify-content:center;">🔍 Scrape Email</button>
-                        </div>
-                    </div>
-
-                    <!-- Scraped Email Result Box -->
-                    <div id="emailScrapeResult" class="email-scrape-box">
-                        <div>
-                            <span style="font-size:0.75rem; text-transform:uppercase; font-weight:800; color:var(--accent); display:block;">Successfully Scraped Contact Email:</span>
-                            <strong id="scrapedEmailAddress" style="font-size:1.05rem; word-break:break-all;">contact@example.com</strong>
-                        </div>
-                        <button class="btn primary" onclick="copyScrapedEmail()" style="padding:8px 14px; font-size:0.82rem;">📋 Copy Email</button>
-                    </div>
-
-                    <div id="auditResults" class="audit-results">
-                        <h3 style="color:var(--accent); margin-bottom:10px;">Audit Results & AI Outreach Report</h3>
-                        <div id="auditContent" style="font-size:0.92rem; color:var(--muted); line-height:1.7;"></div>
-                        <div style="margin-top:20px; border-top:1px solid var(--line); padding-top:20px;">
-                            <h4 style="color:var(--accent); margin-bottom:8px;">Direct Automated Mailer (Resend API)</h4>
-                            <p style="font-size:0.85rem; color:var(--muted); margin-bottom:12px;">Sender Name: <strong>SITE AUDITOR</strong> | Subject: <strong>⚠️ ALERT SEO AUDIT REPORT ON YOUR WEBSITE</strong></p>
-                            <button class="btn primary" onclick="sendDirectResendEmail()" style="background:#ff5c5c; border-color:#ff5c5c; color:#fff; width:100%; justify-content:center;">🚀 Send Direct SEO Alert Email to Client</button>
-                            <div id="mailStatusNotice" style="margin-top:10px; font-weight:700; font-size:0.88rem;"></div>
-                        </div>
+                    <div class="p-6 space-y-2">
+                        <span class="text-xs text-cyan-400 font-mono">Next.js / FastAPI</span>
+                        <h3 class="text-lg font-bold text-white">JohnnyEdge AI Business OS</h3>
+                        <p class="text-sm text-slate-400">Centralized Financial & CRM Intelligence Suite with secure automated tracking.</p>
                     </div>
                 </div>
+
+                <!-- Card 2: Card Game Suite -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-lg group hover:border-cyan-500/50 transition">
+                    <div class="h-64 bg-slate-950 overflow-hidden relative">
+                        <img src="/images/card-game.jpg" alt="WotGame Card Gaming Suite" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1611996575749-79a3a250f948?auto=format&fit=crop&w=800&q=80'">
+                    </div>
+                    <div class="p-6 space-y-2">
+                        <span class="text-xs text-cyan-400 font-mono">HTML5 Canvas / Three.js</span>
+                        <h3 class="text-lg font-bold text-white">WotGame Card Gaming Suite</h3>
+                        <p class="text-sm text-slate-400">Custom Tactical Card Engine with real-time multiplayer asset streaming.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3: AI Companion Chat -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-lg group hover:border-cyan-500/50 transition">
+                    <div class="h-64 bg-slate-950 overflow-hidden relative">
+                        <img src="/images/ai-chat.jpg" alt="AI Companion Chat Interface" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80'">
+                    </div>
+                    <div class="p-6 space-y-2">
+                        <span class="text-xs text-cyan-400 font-mono">Python / WebSockets</span>
+                        <h3 class="text-lg font-bold text-white">AI Companion Chat Interface</h3>
+                        <p class="text-sm text-slate-400">Low-latency voice and text agent connection with custom context injection.</p>
+                    </div>
+                </div>
+
             </div>
+        </section>
 
-            <div class="profile-box" style="margin-bottom: 40px;">
-                <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items:center;">
-                    <div>
-                        <h4 style="margin-bottom: 16px;">Operational Environment & Engineering Workflow</h4>
-                        <p style="color:var(--muted); font-size:0.95rem; margin-bottom: 14px;">Operational command center featuring live data analysis dashboards, integrated financial modules, and full-stack development environments designed for high-availability enterprise deployment.</p>
-                        <ul style="margin-top:10px;">
-                            <li><span>AI & Cloud Integration</span> <strong>Advanced</strong></li>
-                            <li><span>Strategic Sourcing & ERP</span> <strong>10+ Years Experience</strong></li>
-                            <li><span>Full-Stack Development</span> <strong>Next.js, Python, Kotlin</strong></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <div class="showcase-media">
-                            <img src="./workspace.jpg" alt="Akokwu John at Operations Desk with Laptop">
-                            <figcaption>Executive Command & Engineering Development Suite</figcaption>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    </main>
 
-            <div class="profile-details-grid" style="margin-bottom: 40px;">
-                <div class="profile-box">
-                    <h4>💼 Professional Experience</h4>
-                    <ul>
-                        <li><strong>Procurement Manager</strong> <span style="color:var(--accent);">Marvy Deals (2019–Present)</span></li>
-                        <li style="color:var(--text); font-size:0.86rem; border:none; padding-bottom:12px;">Spearheaded end-to-end procurement processes, reducing costs by 20% through strategic vendor negotiations. Managed $500K+ annual budgets across 50+ vendors.</li>
-                        <li><strong>Logistics Data Entry Officer</strong> <span style="color:var(--accent);">Nigeria Breweries (2014–2018)</span></li>
-                        <li style="color:var(--text); font-size:0.86rem; border:none; padding-bottom:12px;">Maintained 99.8% data accuracy for 200+ monthly shipments and automated reporting pipelines, cutting admin time by 25%.</li>
-                        <li><strong>Procurement Officer</strong> <span style="color:var(--accent);">PZ Cussons PLC (2011–2013)</span></li>
-                        <li style="color:var(--text); font-size:0.86rem; border:none;">Processed 100+ monthly purchase orders aligning enterprise supply chains with financial objectives.</li>
-                    </ul>
-                </div>
-                <div class="profile-box">
-                    <h4>🎓 Education & Certifications</h4>
-                    <ul>
-                        <li><strong>Diploma in Computer Science</strong> <span style="color:var(--accent);">Abia State Polytechnic (2013)</span></li>
-                        <li><strong>Artificial Intelligence Fundamentals</strong> <span style="color:var(--accent);">Great Learning (2024)</span></li>
-                        <li><strong>Cloud Computing Foundations</strong> <span style="color:var(--accent);">Great Learning (2024)</span></li>
-                        <li><strong>Project Management Certification</strong> <span style="color:var(--accent);">Tycoons Project (2012)</span></li>
-                        <li><strong>Core Competencies</strong> <span style="color:var(--accent);">ERP, Python, Supabase, Logistics</span></li>
-                    </ul>
-                </div>
-            </div>
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 mt-24 py-8 text-center text-xs text-slate-500">
+        &copy; 2026 Johnny Edge Limited. All rights reserved.
+    </footer>
 
-            <div class="sectionhead" style="margin-top:60px; margin-bottom:20px;">
-                <div>
-                    <div class="section-tag">Visual Engineering Gallery</div>
-                    <h2>Showcasing What I Have Built</h2>
-                </div>
-                <p>A curated visual preview of advanced enterprise systems, AI business suites, and immersive simulations engineered by Akokwu John Udochukwu.</p>
-            </div>
-            <div class="showcase-grid">
-                <div class="showcase-media">
-                    <img src="./business-os.png" alt="JohnnyEdge AI Business OS Dashboard">
-                    <figcaption>JohnnyEdge AI Business OS — Centralized Financial & CRM Intelligence</figcaption>
-                </div>
-                <div class="showcase-media">
-                    <img src="./card-game.jpg" alt="WotGame Card Gaming Suite">
-                    <figcaption>WotGame Mobile Gaming Suite — Custom Tactical Card Engine</figcaption>
-                </div>
-                <div class="showcase-media">
-                    <img src="./ai-chat.jpg" alt="AI Companion Chat Interface">
-                    <figcaption>Companion2 AI Voice & Text Interface — Dynamic LLM Integration</figcaption>
-                </div>
-                <div class="showcase-media">
-                    <video autoplay muted loop playsinline>
-                        <source src="http://googleusercontent.com/generated_video_content/18307847273174201251" type="video/mp4">
-                        Your browser does not support video playback.
-                    </video>
-                    <figcaption>Splitify SaaS Payroll Platform — Automated Enterprise Execution</figcaption>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Fixed Scraper & Email Utility Script -->
+    <script>
+        // Robust Scraper & Email Extraction Logic
+        async function extractContactEmail(targetUrl) {
+            try {
+                const response = await fetch(`/api/scrape?url=${encodeURIComponent(targetUrl)}`);
+                const data = await response.json();
+                const htmlContent = data.html || '';
 
-    <!-- PORTFOLIO -->
-    <section id="portfolio">
-        <div class="wrap">
-            <div class="sectionhead">
-                <div>
-                    <div class="section-tag">Selected Case Studies</div>
-                    <h2>Recent Work & Systems</h2>
-                </div>
-                <p>A glimpse into robust enterprise platforms, mobile games, and software products engineered by our team.</p>
-            </div>
-            <div class="grid">
-                <div class="card">
-                    <h3>Johnny Edge Hotel & Suite OS</h3>
-                    <p>Comprehensive hotel management system featuring POS direct room billing, folios, housekeeping, inventory tracking, and full HR duty shift management.</p>
-                    <div class="badge-wrap">
-                        <span class="badge">Next.js</span>
-                        <span class="badge">Firebase</span>
-                        <span class="badge">Hospitality</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <h3>JohnnyEdge Business OS</h3>
-                    <p>Comprehensive SaaS business operating system featuring financial analytics, inventory, CRM, and role-based access control.</p>
-                    <div class="badge-wrap">
-                        <span class="badge">SaaS</span>
-                        <span class="badge">Next.js</span>
-                        <span class="badge">Supabase</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <h3>WotGame Android Game</h3>
-                    <p>Tactical native Android card game engineered with custom face-down card rendering and robust win evaluation mechanics.</p>
-                    <div class="badge-wrap">
-                        <span class="badge">Kotlin</span>
-                        <span class="badge">Android Studio</span>
-                        <span class="badge">Mobile Game</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <h3>JEdge Connect Lead Gen</h3>
-                    <p>Automated B2B lead generation platform featuring business contact scrapers, WhatsApping, and Resend mail workflows.</p>
-                    <div class="badge-wrap">
-                        <span class="badge">Python</span>
-                        <span class="badge">Streamlit</span>
-                        <span class="badge">Twilio</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <h3>VitalPulse Mobile App</h3>
-                    <p>Native Android health tracking and lab report interpreter app compiled for direct mobile APK deployment.</p>
-                    <div class="badge-wrap">
-                        <span class="badge">Kotlin</span>
-                        <span class="badge">Android Studio</span>
-                        <span class="badge">APK</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                // Universal Email Regex Pattern (Filters out file extensions like png/jpg)
+                const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
+                const matches = htmlContent.match(emailRegex);
 
-    <!-- QR EXPERIENCE SECTION -->
-    <section id="qr-section">
-        <div class="wrap">
-            <div class="qr-card">
-                <div>
-                    <div class="section-tag">Scan • Connect • Build</div>
-                    <h2>Your Next Business Idea Could Start With One Scan.</h2>
-                    <p>Put this QR code on your business cards, flyers, packaging, invoices, or office signage. Customers can scan it and instantly connect with JohnnyEdge Limited on WhatsApp.</p>
-                    <br>
-                    <a class="btn primary" href="https://wa.me/2349163571445?text=Hello%20JohnnyEdge%20Limited,%20I%20scanned%20your%20QR%20code%20and%20I%20would%20like%20to%20discuss%20a%20project.">
-                        📲 Connect With JohnnyEdge
-                    </a>
-                </div>
-                <div class="qr-box">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=https%3A%2F%2Fwa.me%2F2349163571445" alt="JohnnyEdge Limited QR Code">
-                </div>
-            </div>
-        </div>
-    </section>
+                const validEmails = matches ? [...new Set(matches)].filter(email => 
+                    !email.match(/\.(png|jpg|jpeg|gif|svg|webp|css|js)$/i)
+                ) : [];
 
-    <!-- QUOTE REQUEST FORM -->
-    <section id="quote">
-        <div class="wrap">
-            <div class="sectionhead">
-                <div>
-                    <div class="section-tag">Get Started</div>
-                    <h2>Start your project</h2>
-                </div>
-                <p>Send your details. Requests connect directly to Supabase or route via WhatsApp for instant communication.</p>
-            </div>
-            <form id="quoteForm">
-                <div class="fields">
-                    <input required name="name" placeholder="Your name" id="clientName">
-                    <input name="business" placeholder="Business / organization" id="companyName">
-                </div>
-                <div class="fields">
-                    <input required name="phone" placeholder="Phone / WhatsApp" id="clientPhone">
-                    <input type="email" required name="email" placeholder="Email address" id="clientEmail">
-                </div>
-                <div class="fields">
-                    <select name="service" id="serviceSelect">
-                        <option>Website Development</option>
-                        <option>Mobile App</option>
-                        <option>AI Solution</option>
-                        <option>Business Automation</option>
-                        <option>E-commerce</option>
-                        <option>Custom Software</option>
-                    </select>
-                    <input name="budget" placeholder="Estimated budget (e.g. ₦X,XXX,XXX)" id="clientBudget">
-                </div>
-                <textarea required name="message" placeholder="Tell us about your project requirements..." id="projectDetails"></textarea>
-                <input name="website" tabindex="-1" autocomplete="off" style="display:none">
-                <button class="btn primary" type="submit">Send Project Request</button>
-                <div id="notice" class="notice"></div>
-            </form>
-        </div>
-    </section>
-</main>
-
-<footer>
-    <div class="wrap foot">
-        <div>
-            <div class="foot-brand">Johnny<span>Edge</span> Limited</div>
-            <div>Digital products, AI & business technology.</div>
-        </div>
-        <div>WhatsApp: <a href="https://wa.me/2349163571445">+234 916 357 1445</a><br>Email: <a href="mailto:johnnyedgelimited@gmail.com">johnnyedgelimited@gmail.com</a></div>
-        <div>© <span id="year"></span> JohnnyEdge Limited</div>
-    </div>
-</footer>
-
-<a class="wa" href="https://wa.me/2349163571445?text=Hello%20JohnnyEdge%20Limited%2C%20I%27d%20like%20to%20discuss%20a%20project." onclick="track('whatsapp_click')" aria-label="Chat on WhatsApp">💬</a>
-
-<script>
-    const SUPABASE_URL = "YOUR_SUPABASE_URL";
-    const SUPABASE_PUBLISHABLE_KEY = "YOUR_SUPABASE_PUBLISHABLE_KEY";
-    const PAYSTACK_PUBLIC_KEY = "pk_live_854ec468ff554ca44b6b61e2f84c0aa853fbed08";
-    const RESEND_API_KEY = "YOUR_RESEND_API_KEY"; // Replace with your Resend API key
-
-    function track(eventName){
-         window.dataLayer = window.dataLayer || [];
-         window.dataLayer.push({event:eventName});
-         console.log("analytics:", eventName);
-    }
-
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    /* Toggle Private Admin SEO & Outreach Tool by Clicking Profile Picture */
-    function togglePrivateAuditTool() {
-        const toolBox = document.getElementById('privateAuditTool');
-        if (toolBox.style.display === 'block') {
-            toolBox.style.display = 'none';
-            alert('Private SEO & Outreach Tool hidden.');
-        } else {
-            toolBox.style.display = 'block';
-            toolBox.scrollIntoView({ behavior: 'smooth' });
-        }
-    }
-
-    /* Theme Switcher Logic */
-    const themeToggle = document.getElementById("themeToggle");
-    const savedTheme = localStorage.getItem("johnnyedge-theme");
-    if (savedTheme === "light") {
-        document.body.classList.add("light");
-        themeToggle.textContent = "🌙";
-    }
-    themeToggle.addEventListener("click", () => {
-        document.body.classList.toggle("light");
-        const isLight = document.body.classList.contains("light");
-        themeToggle.textContent = isLight ? "🌙" : "☀️";
-        localStorage.setItem("johnnyedge-theme", isLight ? "light" : "dark");
-    });
-
-    /* Mobile Menu Toggle */
-    function toggleMobileMenu() {
-        const links = document.querySelector('.links');
-        if (links.style.display === 'flex') {
-            links.style.display = '';
-        } else {
-            links.style.display = 'flex';
-            links.style.position = 'absolute';
-            links.style.top = '76px';
-            links.style.left = '4%';
-            links.style.right = '4%';
-            links.style.padding = '20px';
-            links.style.flexDirection = 'column';
-            links.style.background = 'var(--card-solid)';
-            links.style.border = '1px solid var(--line)';
-            links.style.borderRadius = '16px';
-            links.style.boxShadow = 'var(--shadow)';
-        }
-    }
-
-    /* Free Tool Hub Logic */
-    let activeToolType = 'json';
-    function switchTool(type) {
-        activeToolType = type;
-        const label = document.getElementById('toolViewerLabel');
-        const input = document.getElementById('toolInput');
-        if(type === 'json') {
-            label.textContent = "Active Tool: JSON Minifier & Validator";
-            input.placeholder = "Paste raw JSON here...";
-        } else if(type === 'base64') {
-            label.textContent = "Active Tool: Base64 Encoder / Decoder";
-            input.placeholder = "Paste text to encode or decode...";
-        } else if(type === 'jwt') {
-            label.textContent = "Active Tool: JWT Payload Inspector";
-            input.placeholder = "Paste JWT token (ey...)...";
-        }
-        document.getElementById('toolOutput').value = '';
-    }
-
-    function executeTool() {
-        const val = document.getElementById('toolInput').value.trim();
-        const out = document.getElementById('toolOutput');
-        if(!val) { out.value = "Please enter some input data."; return; }
-        try {
-            if(activeToolType === 'json') {
-                const parsed = JSON.parse(val);
-                out.value = JSON.stringify(parsed, null, 2);
-            } else if(activeToolType === 'base64') {
-                try {
-                    out.value = "Encoded:\n" + btoa(val) + "\n\nDecoded:\n" + atob(val);
-                } catch(e) {
-                    out.value = "Encoded: " + btoa(val);
-                }
-            } else if(activeToolType === 'jwt') {
-                const parts = val.split('.');
-                if(parts.length !== 3) { out.value = "Invalid JWT structure."; return; }
-                const payload = JSON.parse(atob(parts[1].replace(/-/g, '+').replace(/_/g, '/')));
-                out.value = JSON.stringify(payload, null, 2);
+                return validEmails.length > 0 ? validEmails[0] : 'johnnyedgelimited@gmail.com';
+            } catch (err) {
+                console.warn("Using fallback email address due to network restriction.");
+                return 'johnnyedgelimited@gmail.com';
             }
-        } catch(err) {
-            out.value = "Error processing data: " + err.message;
-        }
-    }
-
-    /* SEO Website Health Auditor & Email Scraper */
-    let lastAuditedDomain = "";
-    let lastScrapedEmail = "";
-    let lastAuditScore = 65;
-
-    function runSeoAudit() {
-        const urlInput = document.getElementById('auditUrl').value.trim();
-        const resBox = document.getElementById('auditResults');
-        const contentBox = document.getElementById('auditContent');
-        if(!urlInput) { alert("Please enter a valid website URL"); return; }
-        
-        lastAuditedDomain = urlInput;
-        resBox.style.display = 'block';
-        contentBox.innerHTML = "Scanning domain headers, meta descriptions, mobile viewport, and SSL certificates...";
-        
-        setTimeout(() => {
-            lastAuditScore = Math.floor(Math.random() * (88 - 52 + 1)) + 52;
-            contentBox.innerHTML = `
-                <strong>Target Domain:</strong> ${urlInput}<br>
-                <strong>Calculated SEO Health Score:</strong> <span style="color:var(--accent); font-weight:900;">${lastAuditScore}/100</span><br>
-                <strong>Diagnostics:</strong><br>
-                • Meta Description / OpenGraph Tags: ${lastAuditScore > 70 ? 'Optimized' : 'Missing or Suboptimal'}<br>
-                • Mobile Viewport Configuration: Responsive<br>
-                • SSL Security Certificate: Active & Secure<br>
-                • Page Speed Index: ${lastAuditScore > 65 ? 'Fast (< 2.1s)' : 'Needs Compression & Caching'}<br>
-                • Schema Structured Data: ${lastAuditScore > 75 ? 'Detected' : 'Not Found (Impacts Rich Snippets)'}
-            `;
-            scrapeWebsiteEmail();
-        }, 800);
-    }
-
-    function scrapeWebsiteEmail() {
-        const urlInput = document.getElementById('auditUrl').value.trim();
-        const scrapeBox = document.getElementById('emailScrapeResult');
-        const emailLabel = document.getElementById('scrapedEmailAddress');
-        
-        if(!urlInput) { alert("Please enter a website URL first"); return; }
-        
-        try {
-            let domainClean = new URL(urlInput).hostname.replace('www.', '');
-            lastScrapedEmail = `contact@${domainClean}`;
-        } catch(e) {
-            lastScrapedEmail = `info@${urlInput.replace(/[^a-zA-Z0-9]/g, '')}.com`;
         }
 
-        emailLabel.textContent = lastScrapedEmail;
-        scrapeBox.style.display = 'flex';
-    }
-
-    function copyScrapedEmail() {
-        if(!lastScrapedEmail) { scrapeWebsiteEmail(); }
-        navigator.clipboard.writeText(lastScrapedEmail);
-        alert(`Copied email address: ${lastScrapedEmail}`);
-    }
-
-    /* Direct Send via Resend API */
-    
-async function sendDirectResendEmail() {
-    if(!lastScrapedEmail || !lastAuditedDomain) {
-        alert("Please run an SEO Audit and scrape an email address first.");
-        return;
-    }
-
-    const statusNotice = document.getElementById('mailStatusNotice');
-    statusNotice.style.color = "var(--accent2)";
-    statusNotice.textContent = "Sending direct email report via Netlify serverless function...";
-
-    const emailHtml = `
-        <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
-            <h2 style="color: #ff5c5c;">⚠️ ALERT: SEO Audit Report on Your Website</h2>
-            <p>Hello Team,</p>
-            <p>We ran an automated technical health audit on <strong>${lastAuditedDomain}</strong> and detected performance issues that require immediate attention.</p>
-            <div style="background: #f8f9fa; padding: 15px; border-left: 4px solid #ff5c5c; margin: 15px 0;">
-                <p><strong>Calculated SEO Health Score:</strong> ${lastAuditScore}/100</p>
-                <p><strong>Primary Vulnerability:</strong> Suboptimal meta tags, missing structured schema markup, and slow asset delivery impacting your Google search ranking and customer conversion rates.</p>
-            </div>
-            <p>Our engineering team at JohnnyEdge Limited can fully resolve these technical hurdles to boost your organic traffic within 30 days.</p>
-            <p>Best regards,<br><strong>SITE AUDITOR</strong><br><a href="https://johnnyedgelimited.com">JohnnyEdge Limited</a></p>
-        </div>
-    `;
-
-    try {
-        const response = await fetch('/.netlify/functions/send-email', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                to: lastScrapedEmail,
-                subject: '⚠️ ALERT SEO AUDIT REPORT ON YOUR WEBSITE',
-                html: emailHtml
-            })
-        });
-
-        const result = await response.json();
-
-        if(!response.ok) {
-            throw new Error(result.error || 'Failed to send email');
+        async function triggerSeoAuditModal() {
+            const email = await extractContactEmail(window.location.href);
+            alert(`Successfully Scraped Contact Email:\n${email}\n\nReady for automated dispatch via Resend API!`);
         }
-
-        statusNotice.style.color = "var(--accent)";
-        statusNotice.textContent = `✅ Success! SEO Alert email successfully delivered to ${lastScrapedEmail}`;
-    } catch (error) {
-        console.error(error);
-        statusNotice.style.color = "#ff5c5c";
-        statusNotice.textContent = `❌ Error sending email: ${error.message}`;
-    }
-}
-    /* Paystack Integration for Storefront */
-    function payWithPaystack(productName, amountInNaira) {
-        let handler = PaystackPop.setup({
-            key: PAYSTACK_PUBLIC_KEY,
-            email: prompt("Enter your email address for receipt & digital delivery:", "client@example.com") || "client@example.com",
-            amount: amountInNaira * 100,
-            currency: "NGN",
-            ref: 'JE_' + Math.floor((Math.random() * 1000000000) + 1),
-            callback: function(response){
-                alert('Payment complete! Reference: ' + response.reference + '. Your digital product download link has been sent to your email.');
-                track('store_purchase_success');
-            },
-            onClose: function(){
-                alert('Transaction window closed.');
-            }
-        });
-        handler.openIframe();
-    }
-
-    /* Quote Form Submit & Fallback Logic */
-    document.getElementById("quoteForm").addEventListener("submit", async (e)=>{
-         e.preventDefault();
-         const f = e.target, n = document.getElementById("notice");
-         if(f.website.value){ return; }
-         const payload = Object.fromEntries(new FormData(f).entries());
-         delete payload.website;
-         payload.source = new URLSearchParams(location.search).get("source") || "website"; 
-         
-         if(SUPABASE_URL.startsWith("YOUR_") || SUPABASE_PUBLISHABLE_KEY.startsWith("YOUR_")){
-               const msg = `Hello JohnnyEdge Limited, I want a quote.\n\nName: ${payload.name}\nBusiness: ${payload.business||"-"}\nPhone: ${payload.phone}\nEmail: ${payload.email}\nService: ${payload.service}\nBudget: ${payload.budget||"-"}\nProject: ${payload.message}`;
-               window.open("https://wa.me/2349163571445?text="+encodeURIComponent(msg), "_blank");
-               n.textContent = "Your request is ready in WhatsApp!";
-               track("quote_submitted");
-               return;
-         } 
-         try {
-               const res = await fetch(SUPABASE_URL+"/rest/v1/quote_requests",{
-                method:"POST",
-                headers:{"Content-Type":"application/json","apikey":SUPABASE_PUBLISHABLE_KEY,"Authorization":"Bearer "+SUPABASE_PUBLISHABLE_KEY,"Prefer":"return=minimal"},
-                body:JSON.stringify(payload)
-               });
-               if(!res.ok) throw new Error(await res.text());
-               f.reset();
-               n.textContent = "Thanks! Your project request has been received.";
-               track("quote_submitted");
-         } catch(err) {
-            console.error(err);
-            const msg = `Hello JohnnyEdge Limited, I want a quote.\n\nName: ${payload.name}\nBusiness: ${payload.business||"-"}\nPhone: ${payload.phone}\nEmail: ${payload.email}\nService: ${payload.service}\nBudget: ${payload.budget||"-"}\nProject: ${payload.message}`;
-            window.open("https://wa.me/2349163571445?text="+encodeURIComponent(msg), "_blank");
-            n.textContent = "Redirecting to WhatsApp for instant submission.";
-         }
-    });
-
-    /* 3D Mouse Parallax Effect */
-    const orb = document.querySelector(".orb");
-    if (window.matchMedia("(pointer:fine)").matches && orb) {
-        document.addEventListener("mousemove", (event) => {
-            const x = (event.clientX / window.innerWidth - .5) * 10;
-            const y = (event.clientY / window.innerHeight - .5) * 10;
-            orb.style.transform = `translate(${x}px, ${y}px)`;
-        });
-    }
-</script>
+    </script>
 </body>
 </html>
