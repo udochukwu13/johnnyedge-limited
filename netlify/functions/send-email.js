@@ -1,4 +1,4 @@
-const { Resend } = require('resend');
+import { Resend } from 'resend';
 
 export async function handler(event) {
     if (event.httpMethod !== 'POST') {
@@ -6,25 +6,28 @@ export async function handler(event) {
     }
 
     try {
-        const { to, subject, html } = JSON.parse(event.body || '{}');
-        
-        if (!to) {
+        const body = JSON.parse(event.body || '{}');
+        const toEmail = body.to || body.email;
+        const subject = body.subject || 'SEO Audit Report';
+        const htmlContent = body.html || '<p>Your website SEO audit report is ready.</p>';
+
+        if (!toEmail) {
             return { statusCode: 400, body: JSON.stringify({ error: 'Recipient email is missing' }) };
         }
 
         const resendApiKey = process.env.RESEND_API_KEY;
         if (!resendApiKey) {
-            return { statusCode: 500, body: JSON.stringify({ error: 'Server configuration error: API key missing' }) };
+            return { statusCode: 500, body: JSON.stringify({ error: 'API key missing in environment variables' }) };
         }
 
         const resend = new Resend(resendApiKey);
 
         const data = await resend.emails.send({
-    from: 'Johnny Edge Limited <audit@johnnyedgelimited.com>',
-    to: [to],
-    subject: subject || 'SEO Audit Report',
-    html: html || '<p>Your website SEO audit report is ready.</p>',
-});
+            from: 'Johnny Edge Limited <audit@johnnyedgelimited.com>',
+            to: [toEmail],
+            subject: subject,
+            html: htmlContent,
+        });
 
         return {
             statusCode: 200,
