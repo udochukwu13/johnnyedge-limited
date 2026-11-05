@@ -25,6 +25,7 @@ exports.handler = async function(event, context) {
         const data = await resend.emails.send({
             from: 'Johnny Edge Limited <audit@johnnyedgelimited.com>',
             to: [toEmail],
+            replyTo: 'johnnyedgelimited@gmail.com', // <--- This ensures client replies come straight to your personal/business inbox
             subject: subject,
             html: htmlContent,
         });
