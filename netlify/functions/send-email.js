@@ -20,11 +20,11 @@ export async function handler(event) {
         const resend = new Resend(resendApiKey);
 
         const data = await resend.emails.send({
-            from: 'Johnny Edge Limited <onboarding@resend.dev>',
-            to: [to],
-            subject: subject || 'SEO Audit Report',
-            html: html || '<p>Your website SEO audit report is ready.</p>',
-        });
+    from: 'Johnny Edge Limited <support@johnnyedgelimited.com>',
+    to: [to],
+    subject: subject || 'SEO Audit Report',
+    html: html || '<p>Your website SEO audit report is ready.</p>',
+});
 
         return {
             statusCode: 200,
